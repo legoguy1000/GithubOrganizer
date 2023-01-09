@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./docker/dockerfile.worker
     volumes:
-      - ./githuborganizer:/app/githuborganizer
+      # - ./githuborganizer:/app/githuborganizer
       - ./github_app.private-key.pem:/app/github_app.private-key.pem
     environment:
       - 'CELERY_BROKER=pyamqp://guest@rabbitmq//'
@@ -21,8 +21,8 @@ services:
       context: .
       dockerfile: ./docker/dockerfile.www
     volumes:
-      - ./githuborganizer:/app/githuborganizer
-      - ./githuborganizer/www.py:/app/main.py
+      # - ./githuborganizer:/app/githuborganizer
+      # - ./githuborganizer/www.py:/app/main.py
       - ./github_app.private-key.pem:/app/github_app.private-key.pem
     environment:
       - 'CELERY_BROKER=pyamqp://guest@rabbitmq//'
