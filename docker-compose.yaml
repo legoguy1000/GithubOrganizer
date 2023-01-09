@@ -30,7 +30,7 @@ services:
       # - 'GITHUB_APP_ID=40145'
       #- 'PROCESS_INSTALLS_INTERVAL=30'
     ports:
-      - "80:80"
+      - "80"
     depends_on:
       - rabbitmq
   rabbitmq:
