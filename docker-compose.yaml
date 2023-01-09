@@ -1,5 +1,4 @@
 version: "3"
-
 services:
   worker:
     build:
@@ -11,11 +10,10 @@ services:
     environment:
       - 'CELERY_BROKER=pyamqp://guest@rabbitmq//'
       - 'DEBUG=true'
-      - 'GITHUB_APP_ID=40145'
+      # - 'GITHUB_APP_ID=40145'
       #- 'PROCESS_INSTALLS_INTERVAL=30'
     depends_on:
       - rabbitmq
-
   www:
     build:
       context: .
@@ -27,12 +25,18 @@ services:
     environment:
       - 'CELERY_BROKER=pyamqp://guest@rabbitmq//'
       - 'DEBUG=true'
-      - 'GITHUB_APP_ID=40145'
+      # - 'GITHUB_APP_ID=40145'
       #- 'PROCESS_INSTALLS_INTERVAL=30'
     ports:
       - "80:80"
     depends_on:
       - rabbitmq
-
   rabbitmq:
     image: rabbitmq
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN
