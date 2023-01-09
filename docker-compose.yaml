@@ -36,7 +36,6 @@ services:
   rabbitmq:
     image: rabbitmq
   tunnel:
-    container_name: cloudflared-tunnel
     image: cloudflare/cloudflared
     restart: unless-stopped
     command: tunnel run
