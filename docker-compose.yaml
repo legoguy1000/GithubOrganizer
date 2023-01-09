@@ -1,6 +1,7 @@
 version: "3"
 services:
   worker:
+    pull_policy: build
     build:
       context: .
       dockerfile: ./docker/dockerfile.worker
@@ -15,6 +16,7 @@ services:
     depends_on:
       - rabbitmq
   www:
+    pull_policy: build
     build:
       context: .
       dockerfile: ./docker/dockerfile.www
